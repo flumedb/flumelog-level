@@ -9,7 +9,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "test-flumelog": "0.0.0"
+    "test-flumelog": "0.0.1"
   },
   "scripts": {
     "test": "node test.js"
