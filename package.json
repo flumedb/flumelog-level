@@ -1,0 +1,19 @@
+{
+  "name": "flumelog-level",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dominictarr/flumelog-level",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/flumelog-level.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "test-flumelog": "0.0.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "'Dominic Tarr' <dominic.tarr@gmail.com> (dominictarr.com)",
+  "license": "MIT"
+}
