@@ -40,12 +40,17 @@ module.exports = function (dir) {
         else return value
       }
 
+      //since we are using timestamps inside BE
+      if(opts.gt < 0) opts.gt = 0
+      if(opts.gte < 0) opts.gte = 0
+
       opts.keys = true
       opts.values = true
       opts.sync = false
       return pull(
         Read(db, opts),
         Map(function (data) {
+          console.log('flumelog-level', data)
           return format(data.key, data.value)
         })
       )
@@ -53,4 +58,5 @@ module.exports = function (dir) {
     append: createAppend(db)
   }
 }
+
 
