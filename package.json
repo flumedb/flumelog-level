@@ -7,7 +7,13 @@
     "type": "git",
     "url": "git://github.com/dominictarr/flumelog-level.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "level": "^1.4.0",
+    "level-peek": "^2.0.2",
+    "monotonic-timestamp": "0.0.9",
+    "obv": "0.0.0",
+    "varstruct": "^5.2.1"
+  },
   "devDependencies": {
     "test-flumelog": "0.0.1"
   },
