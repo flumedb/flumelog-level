@@ -8,6 +8,7 @@
     "url": "git://github.com/dominictarr/flumelog-level.git"
   },
   "dependencies": {
+    "append-batch": "0.0.1",
     "level": "^1.4.0",
     "level-peek": "^2.0.2",
     "monotonic-timestamp": "0.0.9",

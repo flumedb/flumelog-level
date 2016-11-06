@@ -6,8 +6,11 @@ var Double = require('varstruct/types/numbers').DoubleBE
 var pull = require('pull-stream/pull')
 var Map = require('pull-stream/throughs/map')
 var Read = require('pull-level/read')
+var timestamp = require('monotonic-timestamp')
 
-var createAppend = require('./append')
+//var createAppend = require('./append')
+
+var Append = require('append-batch')
 
 module.exports = function (dir) {
 
@@ -19,8 +22,13 @@ module.exports = function (dir) {
     since.set(upto || -1)
   })
 
-  db.on('batch', function (batch) {
-    since.set(batch[batch.length - 1].key)
+  var append = Append(function (batch, cb) {
+    batch = batch.map(function (value) {
+      return {key: last = timestamp(), value: value, type: 'put'}
+    })
+    db.batch(batch, function (err) {
+      since.set(batch[batch.length - 1].key); cb(null, last)
+    })
   })
 
   return {
@@ -55,8 +63,10 @@ module.exports = function (dir) {
         })
       )
     },
-    append: createAppend(db)
+    append: append
   }
 }
+
+
 
 
