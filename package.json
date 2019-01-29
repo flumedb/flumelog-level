@@ -16,7 +16,7 @@
     "varstruct": "^5.2.1"
   },
   "devDependencies": {
-    "test-flumelog": "0.0.1"
+    "test-flumelog": "1.0.0"
   },
   "scripts": {
     "test": "node test.js"

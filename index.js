@@ -12,7 +12,7 @@ var timestamp = require('monotonic-timestamp')
 
 var Append = require('append-batch')
 
-module.exports = function (dir) {
+module.exports = (dir) => () => {
 
   var since = Obv()
 
