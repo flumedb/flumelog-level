@@ -32,6 +32,7 @@ module.exports = (dir) => () => {
   })
 
   return {
+    db,
     dir: dir,
     since: since,
     get: function (seq, cb) {
