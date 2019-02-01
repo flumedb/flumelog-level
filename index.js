@@ -18,8 +18,7 @@ module.exports = (dir) => () => {
 
   // XXX: race condition for sure
   mkdirp(dir, function (err) {
-    if (err) console.error(err)
-    else console.log('pow!')
+    if (err) throw Error(err)
   });
 
   var db = Level(dir, {keyEncoding: Double, valueEncoding: 'json'})
@@ -45,6 +44,7 @@ module.exports = (dir) => () => {
       db.get(seq, cb)
     },
     stream: function (opts) {
+      opts = opts || {}
       opts.keys = null //don't accidentially support level api.
       opts.keys = opts.seqs //alias flume api to level api.
       var seqs = opts.seqs !== false, values = opts.values !== false
