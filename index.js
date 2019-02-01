@@ -16,6 +16,12 @@ module.exports = (dir) => () => {
 
   var since = Obv()
 
+  // XXX: race condition for sure
+  mkdirp(dir, function (err) {
+    if (err) console.error(err)
+    else console.log('pow!')
+  });
+
   var db = Level(dir, {keyEncoding: Double, valueEncoding: 'json'})
 
   peek.last(db, {}, function (_, upto) {
@@ -59,7 +65,6 @@ module.exports = (dir) => () => {
       return pull(
         Read(db, opts),
         Map(function (data) {
-          console.log('flumelog-level', data)
           return format(data.key, data.value)
         })
       )
