@@ -7,19 +7,17 @@ var pull = require('pull-stream/pull')
 var Map = require('pull-stream/throughs/map')
 var Read = require('pull-level/read')
 var timestamp = require('monotonic-timestamp')
+const debug = require('debug')('flumelog-level')
+debug.enabled = true
 
 //var createAppend = require('./append')
 
 var Append = require('append-batch')
 
 module.exports = (dir) => () => {
+  debug('create')
 
   var since = Obv()
-
-  // XXX: race condition for sure
-  mkdirp(dir, function (err) {
-    if (err) throw Error(err)
-  });
 
   var db = Level(dir, {keyEncoding: Double, valueEncoding: 'json'})
 
